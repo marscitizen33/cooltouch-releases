@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>CoolTouch Driver</title>
+        <link>https://cooltouch.app/appcast.xml</link>
+        <language>en</language>
+        <item>
+            <title>Version 1.1.0</title>
+            <pubDate>Mon, 21 Apr 2026 00:00:00 +0800</pubDate>
+            <sparkle:version>1.1.0</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 1.1.0</h3>
+                <ul>
+                    <li>Double-tap to click is now enabled by default</li>
+                    <li>Fixed pointer speed — speed slider now visibly affects cursor velocity</li>
+                    <li>3-finger swipe Back/Forward now works correctly in Finder (Cmd+[/])</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://cooltouch.app/releases/CoolTouchDriver.zip"
+                sparkle:edSignature="QD23NsaW8TfO8Jm0sOjm+G7CkLql9qyMi6Vc6HDVxvHLX4n83J3egF9dIGHe5sQnTATaFy/w4phIgubN3G33Bw=="
+                length="1520086"
+                type="application/octet-stream"
+            />
+        </item>
+    </channel>
+</rss>
