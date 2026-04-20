@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoolTouch for Mac — Full Gesture Support for USB Touchscreens</title>
+<meta name="description" content="Turn any USB touchscreen into a full macOS trackpad. Tap, scroll, pinch, swipe — plug in and it just works.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #06060e;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.07);
+  --text: #ececf4;
+  --muted: #6e6e98;
+  --a1: #4f8ef7;
+  --a2: #a855f7;
+  --a3: #06b6d4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── Ambient glow ── */
+.glow-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79,142,247,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(168,85,247,0.08) 0%, transparent 50%);
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(6,6,14,0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo { font-size: 16px; font-weight: 700; letter-spacing: -0.4px; }
+.logo em { font-style: normal; background: linear-gradient(135deg, var(--a1), var(--a2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.nav-buy {
+  padding: 9px 22px;
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+  border-radius: 22px;
+  color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;
+  transition: opacity .2s, transform .2s;
+  box-shadow: 0 0 24px rgba(79,142,247,0.35);
+}
+.nav-buy:hover { opacity: .85; transform: translateY(-1px); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 24px 80px;
+  position: relative; z-index: 1;
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 99px;
+  font-size: 12px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 40px;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+h1 {
+  font-size: clamp(56px, 9vw, 104px);
+  font-weight: 800; letter-spacing: -4px; line-height: .95;
+  margin-bottom: 28px; max-width: 860px;
+}
+
+.grad { background: linear-gradient(135deg, #fff 0%, var(--a1) 45%, var(--a2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.hero-sub {
+  font-size: clamp(17px, 2vw, 21px); color: var(--muted);
+  max-width: 520px; line-height: 1.65; margin-bottom: 52px;
+}
+
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 18px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 36px; border-radius: 14px;
+  font-size: 17px; font-weight: 600; letter-spacing: -.3px;
+  text-decoration: none; transition: all .2s;
+}
+.btn-fill {
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+  color: #fff; box-shadow: 0 0 48px rgba(79,142,247,0.4);
+}
+.btn-fill:hover { transform: translateY(-3px); box-shadow: 0 0 72px rgba(79,142,247,0.55); }
+.btn-outline {
+  background: var(--surface); border: 1px solid var(--border); color: var(--text);
+}
+.btn-outline:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+.hero-fine { font-size: 13px; color: var(--muted); }
+
+/* ── Mockup ── */
+.mockup-wrap {
+  position: relative; z-index: 1;
+  padding: 0 24px 80px; display: flex; justify-content: center;
+}
+
+.mockup {
+  width: 100%; max-width: 720px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.mockup-bar {
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+.d1{background:#ff5f57} .d2{background:#febc2e} .d3{background:#28c840}
+
+.mockup-body {
+  padding: 32px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+
+.mockup-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+}
+.mockup-card-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--a1); margin-bottom: 10px;
+}
+.mockup-card-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.mockup-bar-row {
+  height: 6px; background: rgba(255,255,255,0.08);
+  border-radius: 3px; margin-bottom: 6px; overflow: hidden;
+}
+.mockup-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--a1), var(--a2));
+  animation: barload 3s ease-in-out infinite alternate;
+}
+@keyframes barload { from{width:30%} to{width:90%} }
+.mockup-bar-fill.b2 { animation-delay: .4s; animation-direction: alternate-reverse; }
+.mockup-bar-fill.b3 { animation-delay: .8s; }
+
+.mockup-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--muted); margin-top: 8px;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+
+.touch-demo {
+  grid-column: span 2;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px;
+  display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
+}
+
+.finger-ring {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; position: relative;
+  animation: ripple 2.5s ease-out infinite;
+}
+.f1 { border-color: var(--a1); animation-delay: 0s; }
+.f2 { border-color: var(--a2); animation-delay: .3s; }
+.f3 { border-color: var(--a3); animation-delay: .6s; }
+.f4 { border-color: #f59e0b; animation-delay: .9s; }
+
+@keyframes ripple {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.12); opacity: .7; }
+}
+.finger-ring::after {
+  content: ''; position: absolute;
+  width: 100%; height: 100%; border-radius: 50%;
+  border: 2px solid inherit;
+  animation: expand 2.5s ease-out infinite;
+}
+.f1::after { border-color: var(--a1); animation-delay: 0s; }
+.f2::after { border-color: var(--a2); animation-delay: .3s; }
+.f3::after { border-color: var(--a3); animation-delay: .6s; }
+.f4::after { border-color: #f59e0b; animation-delay: .9s; }
+@keyframes expand {
+  0% { transform: scale(1); opacity: .8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Compat strip ── */
+.compat {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
+  text-align: center;
+  background: rgba(255,255,255,0.015);
+}
+.compat-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.chip {
+  padding: 8px 18px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 99px;
+  font-size: 13px; letter-spacing: .2px;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 100px 24px;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--a1); text-align: center; margin-bottom: 14px; }
+.section-h { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -2px; text-align: center; margin-bottom: 14px; }
+.section-p { font-size: 17px; color: var(--muted); text-align: center; max-width: 500px; margin: 0 auto 64px; line-height: 1.65; }
+
+/* ── Gesture cards ── */
+.g-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+.g-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 32px 28px; transition: all .3s;
+}
+.g-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(79,142,247,.3); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+
+.g-icon { font-size: 38px; margin-bottom: 20px; display: block; }
+.g-tag { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--a1); margin-bottom: 8px; }
+.g-title { font-size: 19px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 16px; }
+.g-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.g-list li { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.g-list li::before { content: ''; width: 4px; height: 4px; background: var(--a2); border-radius: 50%; flex-shrink: 0; }
+
+/* ── Feature grid ── */
+.f-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+}
+.f-item { background: var(--bg); padding: 36px 32px; transition: background .2s; }
+.f-item:hover { background: var(--surface); }
+.f-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.f-name { font-size: 17px; font-weight: 700; letter-spacing: -.3px; margin-bottom: 8px; }
+.f-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ── Pricing ── */
+.p-card {
+  max-width: 460px; margin: 0 auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+  padding: 48px 40px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.p-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--a1), var(--a2));
+}
+.p-price { font-size: 72px; font-weight: 800; letter-spacing: -4px; line-height: 1; margin-bottom: 6px; }
+.p-price sup { font-size: 28px; font-weight: 500; vertical-align: super; letter-spacing: -1px; }
+.p-note { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+.p-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; text-align: left; }
+.p-list li { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+.p-check {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff;
+}
+.p-guarantee { font-size: 13px; color: var(--muted); margin-top: 16px; }
+
+/* ── Footer ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 36px 24px; text-align: center;
+  font-size: 13px; color: var(--muted);
+}
+footer a { color: inherit; }
+
+@media (max-width: 640px) {
+  nav { padding: 16px 20px; }
+  h1 { letter-spacing: -2px; }
+  .mockup-body { grid-template-columns: 1fr; }
+  .touch-demo { grid-column: span 1; }
+  .section { padding: 60px 16px; }
+  .p-card { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<nav>
+  <div class="logo">Cool<em>Touch</em> for Mac</div>
+  <a href="https://marswanderer72.gumroad.com/l/cooltouch-mac" class="nav-buy">Get it — $19</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="badge"><span class="dot"></span> v1.1.0 · Now available</div>
+  <h1><span class="grad">Your touchscreen.<br>Full gestures.<br>Just plug in.</span></h1>
+  <p class="hero-sub">macOS doesn't support USB HID touchscreens. CoolTouch does — with the full gesture set you'd expect from a built-in trackpad.</p>
+  <div class="hero-btns">
+    <a href="https://marswanderer72.gumroad.com/l/cooltouch-mac" class="btn btn-fill">Start free trial</a>
+    <a href="#gestures" class="btn btn-outline">See gestures ↓</a>
+  </div>
+  <p class="hero-fine">7-day free trial · $19 one-time · macOS 13 Ventura or later</p>
+</section>
+
+<!-- Mockup -->
+<div class="mockup-wrap">
+  <div class="mockup">
+    <div class="mockup-bar">
+      <div class="mockup-dot d1"></div>
+      <div class="mockup-dot d2"></div>
+      <div class="mockup-dot d3"></div>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-card">
+        <div class="mockup-card-label">Device</div>
+        <div class="mockup-card-title">CoolTouch USB HID</div>
+        <div class="mockup-status"><span class="status-dot"></span> Connected · 2 contacts</div>
+      </div>
+      <div class="mockup-card">
+        <div class="mockup-card-label">Pointer speed</div>
+        <div class="mockup-card-title">1.4×</div>
+        <div class="mockup-bar-row"><div class="mockup-bar-fill" style="width:60%"></div></div>
+        <div class="mockup-card-label" style="margin-top:12px">Scroll speed</div>
+        <div class="mockup-bar-row"><div class="mockup-bar-fill b2" style="width:50%"></div></div>
+      </div>
+      <div class="touch-demo">
+        <div class="finger-ring f1">☝️</div>
+        <div class="finger-ring f2">✌️</div>
+        <div class="finger-ring f3">🤟</div>
+        <div class="finger-ring f4">🖐️</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Compat -->
+<div class="compat">
+  <p class="compat-label">Works with</p>
+  <div class="chips">
+    <span class="chip">CoolTouch</span>
+    <span class="chip">eGalax</span>
+    <span class="chip">Ilitek</span>
+    <span class="chip">SiS</span>
+    <span class="chip">Elo Touch</span>
+    <span class="chip">Any USB HID digitizer</span>
+  </div>
+</div>
+
+<!-- Gestures -->
+<section class="section" id="gestures">
+  <p class="section-tag">Gestures</p>
+  <h2 class="section-h">Everything you expect</h2>
+  <p class="section-p">From single tap to four-finger system gestures — it all just works.</p>
+  <div class="g-grid">
+    <div class="g-card">
+      <span class="g-icon">☝️</span>
+      <p class="g-tag">1 finger</p>
+      <h3 class="g-title">Precise control</h3>
+      <ul class="g-list">
+        <li>Move cursor</li>
+        <li>Tap to click</li>
+        <li>Double-tap</li>
+        <li>Hold to drag</li>
+        <li>Long press → right-click</li>
+      </ul>
+    </div>
+    <div class="g-card">
+      <span class="g-icon">✌️</span>
+      <p class="g-tag">2 fingers</p>
+      <h3 class="g-title">Scroll & zoom</h3>
+      <ul class="g-list">
+        <li>Scroll any direction</li>
+        <li>Pinch to zoom</li>
+        <li>Tap for right-click</li>
+        <li>Momentum scrolling</li>
+      </ul>
+    </div>
+    <div class="g-card">
+      <span class="g-icon">🤟</span>
+      <p class="g-tag">3 fingers</p>
+      <h3 class="g-title">Navigate</h3>
+      <ul class="g-list">
+        <li>Swipe back / forward</li>
+        <li>Mission Control</li>
+        <li>App Exposé</li>
+        <li>Window drag mode</li>
+      </ul>
+    </div>
+    <div class="g-card">
+      <span class="g-icon">🖐️</span>
+      <p class="g-tag">4 fingers</p>
+      <h3 class="g-title">System</h3>
+      <ul class="g-list">
+        <li>Switch desktops</li>
+        <li>Mission Control</li>
+        <li>App Exposé</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <p class="section-tag">Under the hood</p>
+  <h2 class="section-h">Built to feel native</h2>
+  <p class="section-p">Every detail engineered to match the macOS experience.</p>
+  <div class="f-grid">
+    <div class="f-item">
+      <span class="f-icon">⚡</span>
+      <h3 class="f-name">Zero latency</h3>
+      <p class="f-desc">Direct IOKit HID integration. No middleware, no polling — events delivered at hardware speed.</p>
+    </div>
+    <div class="f-item">
+      <span class="f-icon">🎯</span>
+      <h3 class="f-name">4-point calibration</h3>
+      <p class="f-desc">Bilinear interpolation maps touch to screen precisely. Multi-display aware.</p>
+    </div>
+    <div class="f-item">
+      <span class="f-icon">🔄</span>
+      <h3 class="f-name">Silent auto-update</h3>
+      <p class="f-desc">Background updates via Sparkle. Always on the latest version, zero effort.</p>
+    </div>
+    <div class="f-item">
+      <span class="f-icon">🚀</span>
+      <h3 class="f-name">Launch at login</h3>
+      <p class="f-desc">Lives in your menu bar. Starts automatically. Always ready.</p>
+    </div>
+    <div class="f-item">
+      <span class="f-icon">🎛️</span>
+      <h3 class="f-name">Fully tunable</h3>
+      <p class="f-desc">Pointer speed, scroll sensitivity, natural scroll, momentum — all configurable.</p>
+    </div>
+    <div class="f-item">
+      <span class="f-icon">🔌</span>
+      <h3 class="f-name">Plug and play</h3>
+      <p class="f-desc">Detects your device on connection. No restart required. Learns new devices automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <p class="section-tag">Pricing</p>
+  <h2 class="section-h">One price. Yours forever.</h2>
+  <p class="section-p">No subscription. No upsell. One payment, lifetime updates.</p>
+  <div class="p-card">
+    <div class="p-price"><sup>$</sup>19</div>
+    <p class="p-note">One-time purchase · Lifetime updates · Single Mac</p>
+    <ul class="p-list">
+      <li><span class="p-check">✓</span> Full multi-finger gesture support</li>
+      <li><span class="p-check">✓</span> 4-point touch calibration</li>
+      <li><span class="p-check">✓</span> Pointer &amp; scroll customization</li>
+      <li><span class="p-check">✓</span> Silent auto-update via Sparkle</li>
+      <li><span class="p-check">✓</span> Free updates forever</li>
+    </ul>
+    <a href="https://marswanderer72.gumroad.com/l/cooltouch-mac" class="btn btn-fill" style="width:100%;justify-content:center;font-size:16px;">
+      Start 7-day free trial
+    </a>
+    <p class="p-guarantee">30-day money-back guarantee · macOS 13 Ventura or later</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 CoolTouch for Mac &nbsp;·&nbsp; <a href="mailto:support@cooltouch.app">support@cooltouch.app</a></p>
+</footer>
+
+</body>
+</html>
