@@ -5,6 +5,44 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.0.0-beta</title>
+            <pubDate>Sat, 03 May 2026 00:00:00 +0800</pubDate>
+            <sparkle:version>2.0.0-beta</sparkle:version>
+            <sparkle:shortVersionString>2.0.0-beta</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 2.0.0 Beta — "Feel Native"</h3>
+                <h4>Universal Device Support</h4>
+                <ul>
+                    <li>Auto-detect native digitizer devices (no activation needed)</li>
+                    <li>VID-level activation fallback for same-vendor devices</li>
+                    <li>Tested on 3 different USB touchscreens (CoolTouch, VID 0x1A86, VID 0x27C6)</li>
+                    <li>Generic Desktop X/Y coordinate support for non-standard HID devices</li>
+                </ul>
+                <h4>New Gestures</h4>
+                <ul>
+                    <li>Two-finger pinch-to-zoom (dual backend: native CGEvent + keyboard fallback)</li>
+                    <li>Two-finger rotation</li>
+                    <li>Two-finger horizontal swipe (Back/Forward)</li>
+                    <li>Unified momentum engine for scroll and magnify inertia</li>
+                    <li>Palm rejection — filters accidental wrist/palm touches</li>
+                </ul>
+                <h4>Quality & Stability</h4>
+                <ul>
+                    <li>177 automated tests (up from 55 in v1.0)</li>
+                    <li>Fixed three-finger drag end detection</li>
+                    <li>Timer robustness (RunLoop .common mode)</li>
+                    <li>Crash-safe CGEvent creation with guard-let</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://cooltouch.app/CoolTouchDriver.zip"
+                sparkle:edSignature="nN8rL8WyFOB7bU/suZcpZC/hK6t/WPWKpU82gctdC/U2OBts2AH2rLSG4VMxuaKVQiox++Yt0U2YFCvZB0vcAw=="
+                length="1696157"
+                type="application/octet-stream"
+            />
+        </item>
+        <item>
             <title>Version 1.1.0</title>
             <pubDate>Mon, 21 Apr 2026 00:00:00 +0800</pubDate>
             <sparkle:version>1.1.0</sparkle:version>
@@ -19,7 +57,7 @@
                 </ul>
             ]]></description>
             <enclosure
-                url="https://cooltouch.app/CoolTouchDriver.zip"
+                url="https://cooltouch.app/CoolTouchDriver-1.1.0.zip"
                 sparkle:edSignature="QD23NsaW8TfO8Jm0sOjm+G7CkLql9qyMi6Vc6HDVxvHLX4n83J3egF9dIGHe5sQnTATaFy/w4phIgubN3G33Bw=="
                 length="1520086"
                 type="application/octet-stream"
