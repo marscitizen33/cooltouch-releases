@@ -23,29 +23,8 @@
             ]]></description>
             <enclosure
                 url="https://cooltouch.app/CoolTouchDriver.zip"
-                sparkle:edSignature="aFTFNblCAO9sH0LQ3yWewi857zFMvi32bg4KShDlN7pqllThDjWrJebpbgmrOBKSgqXOEescVYU0bcTsNXNoDA=="
-                length="1685156"
-                type="application/octet-stream"
-            />
-        </item>
-        <item>
-            <title>Version 1.1.0</title>
-            <pubDate>Mon, 21 Apr 2026 00:00:00 +0800</pubDate>
-            <sparkle:version>1.1.0</sparkle:version>
-            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[
-                <h3>Version 1.1.0</h3>
-                <ul>
-                    <li>Double-tap to click is now enabled by default</li>
-                    <li>Fixed pointer speed — speed slider now visibly affects cursor velocity</li>
-                    <li>3-finger swipe Back/Forward now works correctly in Finder (Cmd+[/])</li>
-                </ul>
-            ]]></description>
-            <enclosure
-                url="https://cooltouch.app/CoolTouchDriver.zip"
-                sparkle:edSignature="QD23NsaW8TfO8Jm0sOjm+G7CkLql9qyMi6Vc6HDVxvHLX4n83J3egF9dIGHe5sQnTATaFy/w4phIgubN3G33Bw=="
-                length="1520086"
+                sparkle:edSignature="Sb53/2fGSbvgx21i+yA3djQ6rKDZb2qRIJbDAgbiUHaTSRbRTWY6jq6PjH7kF8OjcU0/dAGfzLQaSJRFDS1ODQ=="
+                length="1732271"
                 type="application/octet-stream"
             />
         </item>
