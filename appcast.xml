@@ -5,6 +5,33 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.1.1 — Critical Activation Fix</title>
+            <pubDate>Thu, 17 Jul 2026 00:00:00 +0800</pubDate>
+            <sparkle:version>66</sparkle:version>
+            <sparkle:shortVersionString>2.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>🚨 Critical Bug Fix — License Activation</h3>
+                <p><strong>All paying customers unable to activate in v2.1.0 and earlier.</strong></p>
+                <p>Fixed: Gumroad license verification now uses the correct API parameter (<code>product_id</code>).
+                Previous versions returned "the product_id parameter is required" error.</p>
+                <p><strong>If you purchased and could not activate:</strong> Update to v2.1.1 and re-enter your license key in Settings → Activation.</p>
+
+                <h3>What's in v2.1.x</h3>
+                <ul>
+                    <li>Interactive touchscreen setup wizard with auto-diagnostics</li>
+                    <li>Multi-display calibration and pointer acceleration fixes</li>
+                    <li>New brand app icon</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://github.com/marscitizen33/CoolTouchDriver/releases/download/v2.1.1/CoolTouchDriver-v2.1.1-macOS.zip"
+                sparkle:edSignature="aWSYFC/3gi6YEPy/rYe5IbSkIHZVZmyYGjOL/TnlWW/U2kI5taglGtzH7vVw8nhqsBJ+b4r5oWhLzXJeGXXqBw=="
+                length="2107158"
+                type="application/octet-stream"
+            />
+        </item>
+        <item>
             <title>Version 2.0.1</title>
             <pubDate>Fri, 13 Jun 2026 00:00:00 +0800</pubDate>
             <sparkle:version>2.0.1</sparkle:version>
