@@ -5,6 +5,29 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.1.2 — Smarter Multi-Display Routing</title>
+            <pubDate>Wed, 22 Jul 2026 18:08:31 +0000</pubDate>
+            <sparkle:version>95</sparkle:version>
+            <sparkle:shortVersionString>2.1.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 2.1.2 — Smarter Multi-Display Routing</h3>
+                <ul>
+                    <li>Automatic display routing sends touch to the right screen on multi-monitor setups</li>
+                    <li>New <strong>Identify Display…</strong> command lets you choose which display the touchscreen controls</li>
+                    <li>You can re-identify and switch the target display at any time after confirming</li>
+                    <li>Fixed crashes and lifecycle issues with the Identify Display overlay window</li>
+                    <li>More reliable touchscreen activation after a cold boot</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://github.com/marscitizen33/CoolTouchDriver/releases/download/v2.1.2/CoolTouchDriver-v2.1.2-macOS.zip"
+                sparkle:edSignature="tQj/oup6ag7D/wKzleXEDtMxilUMDiVDz4rO0wwi1Lut6wbuec/KtJuV+q+wdb6IFSP0tgvpjzXZsbOAMGGrAg=="
+                length="2445260"
+                type="application/octet-stream"
+            />
+        </item>
+        <item>
             <title>Version 2.1.1 — Critical Activation Fix</title>
             <pubDate>Thu, 17 Jul 2026 00:00:00 +0800</pubDate>
             <sparkle:version>66</sparkle:version>
