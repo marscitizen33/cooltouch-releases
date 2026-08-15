@@ -5,6 +5,28 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.1.3 — Code Signing &amp; Notarization Fix</title>
+            <pubDate>Sat, 15 Aug 2026 07:21:23 +0000</pubDate>
+            <sparkle:version>98</sparkle:version>
+            <sparkle:shortVersionString>2.1.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 2.1.3 — Code Signing &amp; Notarization Fix</h3>
+                <ul>
+                    <li>Fixed macOS code-signature verification failures (<code>invalid signature</code>) by correcting Developer ID signing of the bundled Sparkle components</li>
+                    <li>Removed incorrectly propagated nested entitlements from Sparkle helper processes</li>
+                    <li>Apple notarized and stapled — clean Gatekeeper install with no warnings</li>
+                    <li>Improved per-component release verification before shipping</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://cooltouch.app/CoolTouchDriver-v2.1.3-macOS.zip"
+                sparkle:edSignature="2DAdZTVQ7HtsLvxBEbOYXOEFZiKBu6QZaVgpshg5yppxGVZ6Elw+C0rXnC3UeiHdgpwq9ieivFRpZBPvnfvSBQ=="
+                length="2440474"
+                type="application/octet-stream"
+            />
+        </item>
+        <item>
             <title>Version 2.1.2 — Smarter Multi-Display Routing</title>
             <pubDate>Wed, 22 Jul 2026 18:08:31 +0000</pubDate>
             <sparkle:version>95</sparkle:version>
