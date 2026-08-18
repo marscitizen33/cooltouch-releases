@@ -5,6 +5,30 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.1.4 — License Activation &amp; Reliability</title>
+            <pubDate>Mon, 18 Aug 2026 14:08:38 +0000</pubDate>
+            <sparkle:version>105</sparkle:version>
+            <sparkle:shortVersionString>2.1.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 2.1.4 — License Activation &amp; Reliability</h3>
+                <ul>
+                    <li>Improved license activation and background verification</li>
+                    <li>Existing activated users remain activated after updating</li>
+                    <li>Temporary network or Gumroad service errors no longer interrupt an existing activation</li>
+                    <li>Refunded, charged-back, disputed-lost, disabled, or invalid licenses are handled more accurately</li>
+                    <li>New installations can use CoolTouch during the activation grace period before entering a license key</li>
+                    <li>Improved privacy in license-related diagnostic logs</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://cooltouch.app/CoolTouchDriver-v2.1.4-macOS.zip"
+                sparkle:edSignature="VqlHNkkko00RS7zUNs9a8oFN7ASX4N6XeoEIFSyBTG967UwQa4elV8elihwNYeXNuc8G3nOA1ak53JuP7T+LCA=="
+                length="2452001"
+                type="application/octet-stream"
+            />
+        </item>
+        <item>
             <title>Version 2.1.3 — Code Signing &amp; Notarization Fix</title>
             <pubDate>Sat, 15 Aug 2026 07:21:23 +0000</pubDate>
             <sparkle:version>98</sparkle:version>
