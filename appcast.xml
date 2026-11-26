@@ -5,6 +5,26 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>Version 2.2.0 — Guided Touch Matching</title>
+            <pubDate>Thu, 26 Nov 2026 07:01:28 +0000</pubDate>
+            <sparkle:version>322</sparkle:version>
+            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h3>Version 2.2.0 — Guided Touch Matching</h3>
+                <p>Requires macOS 15 or later. This release no longer supports macOS 14.</p>
+                <ul>
+                    <li>Input-first touchscreen setup with clear instructions and explicit no-response feedback.</li>
+                    <li>Reversible eligible mode checks, saved matching preferences and failure recovery without repeated automatic experiments.</li>
+                    <li>Improved Preview PDF touch navigation, Finder selection, double-click and long-press interactions in supported regions.</li>
+                    <li>Touch experience presets with undo, calibration and ZIP support reports.</li>
+                    <li>Existing gesture settings are retained. Device compatibility depends on the controller input.</li>
+                </ul>
+            ]]></description>
+            <enclosure url="https://cooltouch.app/CoolTouchDriver-v2.2.0-macOS.zip"
+                sparkle:edSignature="IIvgBfmlfyhTwPY+kx2YcrQI0P+ghM+wqkRHONaD3nH8hM1RtgTzWB45iH+KL1hbquKdv9hnCx4f4SPscW42Bg==" length="4972632" type="application/octet-stream" />
+        </item>
+        <item>
             <title>Version 2.1.4 — License Activation &amp; Reliability</title>
             <pubDate>Mon, 18 Aug 2026 14:08:38 +0000</pubDate>
             <sparkle:version>105</sparkle:version>
