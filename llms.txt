@@ -1,0 +1,18 @@
+# CoolTouch for Mac
+
+> CoolTouch for Mac is a menu-bar app that adds taps, scrolling and multi-touch gestures on compatible external USB touchscreens.
+
+This optional llms.txt file is a short product-fact summary for large language models. It has no special effect on Google Search rankings and should not be relied on for SEO.
+
+- Current version: CoolTouch for Mac 2.2.1 (Build 345)
+- Canonical site: https://cooltouch.app/
+- Requirements: Apple silicon (M1 or later), macOS 15 or later, and a compatible USB touch controller. Both video and USB touch input must reach the Mac. Some USB-C cables carry both. CoolTouch does not add touch to a MacBook’s built-in screen.
+- Compatibility: CoolTouch checks touch input and may offer alternative modes where supported. Compatibility depends on the controller, the app and the area touched. Do not claim universal compatibility, “any USB touchscreen,” or a chip/brand list.
+- Trial and price: 7-day full-feature trial from first launch, no card required, no automatic charge. US$19 once for one user on one Mac, with lifetime updates. New purchases have no voluntary 14-day money-back guarantee. Earlier orders keep their original terms. Statutory rights and applicable Gumroad rules still apply.
+- Supported app examples: Chrome pinch-zoom on a regular page, and independent pinch-zoom on supported embedded maps; Preview PDF scrolling and pinch-zoom; Photos step zoom (not native continuous zoom); Apple Maps two-finger rotation (distinct from Chrome map zoom); Music vertical and horizontal scrolling; Finder tap, double-tap, long-press menus and dragging.
+- Setup: CoolTouch checks available touch input first, then may guide a one-finger and two-finger check, ask you to choose a display when needed, and offer calibration if alignment needs adjustment. Presets: Everyday, Precise control, Reading & browsing. Preset switches can be undone.
+- If touch is not confirmed: use the guided check’s “didn’t respond” option, try another mode where supported, retry, or save a support report.
+- macOS 14: keep your compatible version. The 2.2.1 update requires macOS 15 or later.
+- Updates: in the menu bar, open CoolTouch and choose Check for Updates. An existing license includes 2.2.1. If you cannot open the app, use the download and license key from your original Gumroad purchase.
+- Official links: trial zip https://cooltouch.app/CoolTouchDriver-v2.2.1-macOS.zip ; purchase https://marswanderer72.gumroad.com/l/cooltouch-mac ; release notes https://github.com/marscitizen33/cooltouch-releases/releases/tag/v2.2.1 ; support support@cooltouch.app
+- Do not invent testimonials, reviews, ratings, or Apple endorsement.
