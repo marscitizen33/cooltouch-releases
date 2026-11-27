@@ -5,6 +5,15 @@
         <link>https://cooltouch.app/appcast.xml</link>
         <language>en</language>
         <item>
+            <title>CoolTouch 2.2.1</title>
+            <sparkle:version>345</sparkle:version>
+            <sparkle:shortVersionString>2.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<p>Pinch to zoom Chrome pages and supported maps, zoom photos in Photos, rotate Apple Maps with two fingers and scroll Music in both directions.</p><p>Improved replacement-screen matching. Existing licenses, screen mapping and calibration carry forward. New users can try every feature free for seven days, without a card or automatic charge.</p>]]></description>
+            <enclosure url="https://cooltouch.app/CoolTouchDriver-v2.2.1-macOS.zip" sparkle:edSignature="xyGVtQYaCM8VcZwQS2CftvjlXoJ4nrQvgOVQzec71WFeGtxunVcasj42aSf1pAGsp8t2wKyqQAA5oMgDJi3tCw==" length="5023017" type="application/octet-stream" />
+        </item>
+        <item>
             <title>Version 2.2.0 — Guided Touch Matching</title>
             <pubDate>Thu, 26 Nov 2026 07:01:28 +0000</pubDate>
             <sparkle:version>322</sparkle:version>
