@@ -11,6 +11,10 @@ An external touchscreen can display your Mac even when tapping it does nothing. 
 - In Chrome, pinch over text to zoom the page. Pinch inside a supported embedded map to zoom the map independently.
 - In Photos, pinch an open picture to zoom in steps. In Apple Maps, turn two fingers to rotate the map.
 
+## Seven-day free trial
+
+Try every feature free for 7 days from first launch. No card required and no automatic charge. Buy anytime for $19 to keep using CoolTouch on one Mac, with lifetime updates. New purchases do not include a voluntary 14-day money-back guarantee. Purchases made under the previous guarantee keep their original terms. Statutory rights and applicable Gumroad refund rules still apply.
+
 ## Get started
 
 You need an Apple silicon Mac running macOS 15 or later and a compatible external USB touchscreen. Connect both video and USB touch input. Some displays carry both over one USB-C cable.
